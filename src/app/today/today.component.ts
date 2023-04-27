@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./today.component.css']
 })
 export class TodayComponent implements OnInit {
+  @Input() cities: any[];
   lat;
   lon;
   weather;
@@ -23,6 +24,8 @@ export class TodayComponent implements OnInit {
       this.weatherService.getWeatherDataByCoords(this.lat,this.lon).subscribe(
         data=>{
           this.weather= data;
+          if(this.cities.findIndex(element=>element.name === this.weather.name)==-1)
+          this.cities.push(data);
           console.log(this.weather);
         }
       )
@@ -32,10 +35,13 @@ export class TodayComponent implements OnInit {
  }
  getCity(city)
  {
+  
   this.weatherService.getWeatherDataByCityName(city).subscribe(
     data=>{
       this.weather= data;
       console.log(this.weather);
+      if(this.cities.findIndex(element=>element.name === this.weather.name)==-1)
+      this.cities.push(data);
     }
   )
  }

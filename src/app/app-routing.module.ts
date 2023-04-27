@@ -7,7 +7,7 @@ const routes: Routes = [
  
   {
     path: ':slug',
-    component: AnothercityComponent ,
+    component: TodayComponent ,
   }
 ];
 
