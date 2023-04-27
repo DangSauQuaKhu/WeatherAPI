@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AnothercityComponent } from './anothercity/anothercity.component';
+import { TodayComponent } from './today/today.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+ 
+  {
+    path: ':slug',
+    component: AnothercityComponent ,
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
