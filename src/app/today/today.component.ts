@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-today',
@@ -11,7 +12,7 @@ export class TodayComponent implements OnInit {
   lat;
   lon;
   weather;
-  constructor(private weatherService: WeatherService){}
+  constructor(private weatherService: WeatherService,private router: Router){}
  ngOnInit(): void {
      this.getLocation();
  }
@@ -45,4 +46,9 @@ export class TodayComponent implements OnInit {
     }
   )
  }
+ isHomeRoute() {
+  //console.log(this.router.url);
+  return this.router.url === '/';
+ 
+}
 }

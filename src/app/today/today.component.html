@@ -1,45 +1,55 @@
-<div class="row">
-    <div class="col-md-6 offset-md-3 ">
-        <div class="col-sm-12 text-center">
-            <div class="input-group mt-5">
-                <input type="text" class="form-control" #userInput placeholder="city name"
-                    (keyup.enter)="getCity(userInput.value)">
-                <div class="input-group-append">
-                    <button class="input-group-text btn btn-outline-primary"
-                        (click)="getCity(userInput.value)">Search</button>
+<router-outlet></router-outlet>
+
+<div *ngIf="isHomeRoute()">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 ">
+            <div class="col-sm-12 text-center">
+                <div class="input-group mt-5">
+                    <input type="text" class="form-control" #userInput placeholder="city name"
+                        (keyup.enter)="getCity(userInput.value)">
+                    <div class="input-group-append">
+                        <button class="input-group-text btn btn-outline-primary"
+                            (click)="getCity(userInput.value)">Search</button>
+                    </div>
                 </div>
+    
+    
             </div>
-
-
         </div>
+        <div *ngFor="let city of cities">
+            <h2 class="text-center">Weather in {{city.name}}, {{city.sys.country}}</h2>
+            <div class="col-sm-12 text-center">
+                <span class="temp">{{city.main.temp|number:'1.0-0'}}&#176;F</span>
+                <p class="text-uppercase font-italic font-weight-bold">{{city.weather[0].description}}</p>
+            </div>
+            <table class="table table-light table-striped table-bordered table-sm text-center"
+                style="width: 70%; margin-left: 13%;">
+                <tbody>
+                    <tr>
+                        <td>Humidity</td>
+                        <td>{{city.main.humidity}}%</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure</td>
+                        <td>{{city.main.pressure}} hPa</td>
+                    </tr>
+                    <tr>
+                        <td>Sunrise</td>
+                        <td>{{city.sys.sunrise*1000 | date: 'H:mm'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Sunset</td>
+                        <td>{{city.sys.sunset*1000|date: 'H:mm'}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><a [routerLink]="[city.name]">Detail</a></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>   
     </div>
-    <div *ngFor="let city of cities">
-        <h2 class="text-center">Weather in {{city.name}}, {{city.sys.country}}</h2>
-        <div class="col-sm-12 text-center">
-            <span class="temp">{{city.main.temp|number:'1.0-0'}}&#176;F</span>
-            <p class="text-uppercase font-italic font-weight-bold">{{city.weather[0].description}}</p>
-        </div>
-        <table class="table table-light table-striped table-bordered table-sm text-center"
-            style="width: 70%; margin-left: 13%;">
-            <tbody>
-                <tr>
-                    <td>Humidity</td>
-                    <td>{{city.main.humidity}}%</td>
-                </tr>
-                <tr>
-                    <td>Pressure</td>
-                    <td>{{city.main.pressure}} hPa</td>
-                </tr>
-                <tr>
-                    <td>Sunrise</td>
-                    <td>{{city.sys.sunrise*1000 | date: 'H:mm'}}</td>
-                </tr>
-                <tr>
-                    <td>Sunset</td>
-                    <td>{{city.sys.sunset*1000|date: 'H:mm'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
 </div>
+
+

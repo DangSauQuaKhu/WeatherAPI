@@ -1,4 +1,4 @@
-<h2>Weather in {{weather.name}}, {{weather.sys.country}}</h2>
+<h2 class="text-center">Weather in {{weather.name}}, {{weather.sys.country}}</h2>
 <div class="col-sm-12 text-center">
 <span class="temp">{{weather.main.temp|number:'1.0-0'}}&#176;F</span>
 <p class="text-uppercase font-italic font-weight-bold" >{{weather.weather[0].description}}</p>
@@ -16,6 +16,10 @@
     </tr>
     <tr>
         <td>Sunset</td><td>{{weather.sys.sunset*1000|date: 'H:mm'}}</td>
+    </tr>
+    <tr>
+        
+        <td><a routerLink="/">Back</a></td>
     </tr>
 </tbody>
 </table>

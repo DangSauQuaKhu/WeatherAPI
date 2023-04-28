@@ -5,10 +5,9 @@ import { TodayComponent } from './today/today.component';
 
 const routes: Routes = [
  
-  {
-    path: ':slug',
-    component: TodayComponent ,
-  }
+ // { path: '',   redirectTo: '/', pathMatch: 'full' },
+  {path:':slug',component: AnothercityComponent},
+ // {path:'',component: TodayComponent}
 ];
 
 @NgModule({

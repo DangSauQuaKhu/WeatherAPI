@@ -8,12 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./anothercity.component.css']
 })
 export class AnothercityComponent implements OnInit {
-  lat;
-  lon;
+  ;
   weather;
   constructor(private weatherService: WeatherService,private _route: ActivatedRoute){}
   ngOnInit(): void {
+    console.log("router:",this._route.url);
     let slug = this._route.snapshot.paramMap.get('slug');
+    console.log("slug:",slug);
     this.weatherService.getWeatherDataByCityName(slug).subscribe(
       data=>{
         this.weather= data;
