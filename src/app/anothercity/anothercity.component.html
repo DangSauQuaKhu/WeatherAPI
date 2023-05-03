@@ -1,7 +1,9 @@
 <h2 class="text-center">Weather in {{weather.name}}, {{weather.sys.country}}</h2>
 <div class="col-sm-12 text-center">
-<span class="temp">{{weather.main.temp|number:'1.0-0'}}&#176;F</span>
-<p class="text-uppercase font-italic font-weight-bold" >{{weather.weather[0].description}}</p>
+    <img src="{{weather.iconImg}}">
+<span class="temp">{{weather.main.tempC}}&#176;C</span>
+<p class="text-uppercase font-italic font-weight-bold" style="color: red;" >{{weather.weather[0].description}}</p>
+
 </div>
 <table class="table table-light table-striped table-bordered table-sm text-center" style="width: 70%; margin-left: 13%;">
 <tbody>
@@ -18,8 +20,21 @@
         <td>Sunset</td><td>{{weather.sys.sunset*1000|date: 'H:mm'}}</td>
     </tr>
     <tr>
+        <td>Geo coords</td><td>[{{weather.coord.lat}},{{weather.coord.lon}}]</td>
+    </tr>
+    <tr>
         
         <td><a routerLink="/">Back</a></td>
     </tr>
 </tbody>
 </table>
+
+<br>
+<br>
+<google-map height="500px"
+width="100%"
+[zoom]="zoom"
+[center]="center"
+[options]="options" ></google-map>
+<button (click)="zoomIn()">Zoom in</button>
+<button (click)="zoomOut()">Zoom out</button>

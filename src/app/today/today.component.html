@@ -1,10 +1,12 @@
 <router-outlet></router-outlet>
 
-<div *ngIf="isHomeRoute()">
+
+
+ <div *ngIf="isHomeRoute()">
     <div class="row">
         <div class="col-md-6 offset-md-3 ">
             <div class="col-sm-12 text-center">
-                <div class="input-group mt-5">
+                <div class="input-group mt-5" style="margin-right: 50px;">
                     <input type="text" class="form-control" #userInput placeholder="city name"
                         (keyup.enter)="getCity(userInput.value)">
                     <div class="input-group-append">
@@ -12,44 +14,74 @@
                             (click)="getCity(userInput.value)">Search</button>
                     </div>
                 </div>
-    
-    
+
+
             </div>
         </div>
-        <div *ngFor="let city of cities">
-            <h2 class="text-center">Weather in {{city.name}}, {{city.sys.country}}</h2>
-            <div class="col-sm-12 text-center">
-                <span class="temp">{{city.main.temp|number:'1.0-0'}}&#176;F</span>
-                <p class="text-uppercase font-italic font-weight-bold">{{city.weather[0].description}}</p>
-            </div>
-            <table class="table table-light table-striped table-bordered table-sm text-center"
-                style="width: 70%; margin-left: 13%;">
-                <tbody>
-                    <tr>
-                        <td>Humidity</td>
-                        <td>{{city.main.humidity}}%</td>
-                    </tr>
-                    <tr>
-                        <td>Pressure</td>
-                        <td>{{city.main.pressure}} hPa</td>
-                    </tr>
-                    <tr>
-                        <td>Sunrise</td>
-                        <td>{{city.sys.sunrise*1000 | date: 'H:mm'}}</td>
-                    </tr>
-                    <tr>
-                        <td>Sunset</td>
-                        <td>{{city.sys.sunset*1000|date: 'H:mm'}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><a [routerLink]="[city.name]">Detail</a></td>
-                        
-                    </tr>
-                </tbody>
-            </table>
-        </div>   
+
     </div>
-</div>
+   
+    <div *ngFor="let item of cities; let i = index">
+        <div *ngIf="i % 3 == 0" class="row" style="margin-top: 40px;margin-left: 100px;">
+            <div class="col " >
+                <a [routerLink]="[item.name]">
+                    <article class="widget">
+                        <div class="weatherIcon"><img src="{{item.iconImg}}"></div>
+                        <div class="weatherInfo">
+                            <div class="temperature"><span>{{item.main.tempC}}&#176;C</span></div>
+                            <div class="description">
+                                <div class="weatherCondition">{{item.weather[0].description}}</div>
+                                <div class="place">{{item.name}}, {{item.sys.country}}</div>
+                            </div>
+                        </div>
+                        <div class="date text-center">{{item.date | date:'mediumDate'}}</div>
+                    </article>
+                </a>
+               
+
+            </div>
+          <div class="col"  >
+            <div *ngIf="i + 1 < cities.length">
+                <a [routerLink]="[cities[i + 1].name]">
+                <article class="widget" >
+                    <div class="weatherIcon"><img src="{{cities[i + 1].iconImg}}"></div>
+                    <div class="weatherInfo">
+                        <div class="temperature"><span>{{cities[i + 1].main.tempC}}&#176;C</span></div>
+                        <div class="description">
+                            <div class="weatherCondition">{{cities[i + 1].weather[0].description}}</div>
+                            <div class="place">{{cities[i + 1].name}}, {{cities[i + 1].sys.country}}</div>
+                        </div>
+                    </div>
+                    <div class="date text-center">{{cities[i + 1].date | date:'mediumDate'}}</div>
+                </article>
+                </a>
+            </div>
+        
+            
+
+          </div>
+          <div class="col" >
+            <div *ngIf="i + 2 < cities.length">
+                <a [routerLink]="[cities[i + 2].name]">
+                <article class="widget">
+                    <div class="weatherIcon"><img src="{{cities[i + 2].iconImg}}"></div>
+                    <div class="weatherInfo">
+                        <div class="temperature"><span>{{cities[i + 2] .main.tempC}}&#176;C</span></div>
+                        <div class="description">
+                            <div class="weatherCondition">{{cities[i + 2] .weather[0].description}}</div>
+                            <div class="place">{{cities[i + 2].name}}, {{cities[i + 2].sys.country}}</div>
+                        </div>
+                    </div>
+                    <div class="date text-center">{{cities[i + 2].date | date:'mediumDate'}}</div>
+                </article>
+                </a>
+            </div>
+           
+          </div>
+          
+        </div>
+      </div>
 
 
+
+ 
