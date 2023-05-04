@@ -1,8 +1,6 @@
 <router-outlet></router-outlet>
 
-
-
- <div *ngIf="isHomeRoute()">
+<div *ngIf="isHomeRoute()">
     <div class="row">
         <div class="col-md-6 offset-md-3 ">
             <div class="col-sm-12 text-center">
@@ -14,16 +12,13 @@
                             (click)="getCity(userInput.value)">Search</button>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
     </div>
-   
+
     <div *ngFor="let item of cities; let i = index">
         <div *ngIf="i % 3 == 0" class="row" style="margin-top: 40px;margin-left: 100px;">
-            <div class="col " >
+            <div class="col ">
                 <a [routerLink]="[item.name]">
                     <article class="widget">
                         <div class="weatherIcon"><img src="{{item.iconImg}}"></div>
@@ -37,51 +32,40 @@
                         <div class="date text-center">{{item.date | date:'mediumDate'}}</div>
                     </article>
                 </a>
-               
-
             </div>
-          <div class="col"  >
-            <div *ngIf="i + 1 < cities.length">
-                <a [routerLink]="[cities[i + 1].name]">
-                <article class="widget" >
-                    <div class="weatherIcon"><img src="{{cities[i + 1].iconImg}}"></div>
-                    <div class="weatherInfo">
-                        <div class="temperature"><span>{{cities[i + 1].main.tempC}}&#176;C</span></div>
-                        <div class="description">
-                            <div class="weatherCondition">{{cities[i + 1].weather[0].description}}</div>
-                            <div class="place">{{cities[i + 1].name}}, {{cities[i + 1].sys.country}}</div>
-                        </div>
-                    </div>
-                    <div class="date text-center">{{cities[i + 1].date | date:'mediumDate'}}</div>
-                </article>
-                </a>
+            <div class="col">
+                <div *ngIf="i + 1 < cities.length">
+                    <a [routerLink]="[cities[i + 1].name]">
+                        <article class="widget">
+                            <div class="weatherIcon"><img src="{{cities[i + 1].iconImg}}"></div>
+                            <div class="weatherInfo">
+                                <div class="temperature"><span>{{cities[i + 1].main.tempC}}&#176;C</span></div>
+                                <div class="description">
+                                    <div class="weatherCondition">{{cities[i + 1].weather[0].description}}</div>
+                                    <div class="place">{{cities[i + 1].name}}, {{cities[i + 1].sys.country}}</div>
+                                </div>
+                            </div>
+                            <div class="date text-center">{{cities[i + 1].date | date:'mediumDate'}}</div>
+                        </article>
+                    </a>
+                </div>
             </div>
-        
-            
-
-          </div>
-          <div class="col" >
-            <div *ngIf="i + 2 < cities.length">
-                <a [routerLink]="[cities[i + 2].name]">
-                <article class="widget">
-                    <div class="weatherIcon"><img src="{{cities[i + 2].iconImg}}"></div>
-                    <div class="weatherInfo">
-                        <div class="temperature"><span>{{cities[i + 2] .main.tempC}}&#176;C</span></div>
-                        <div class="description">
-                            <div class="weatherCondition">{{cities[i + 2] .weather[0].description}}</div>
-                            <div class="place">{{cities[i + 2].name}}, {{cities[i + 2].sys.country}}</div>
-                        </div>
-                    </div>
-                    <div class="date text-center">{{cities[i + 2].date | date:'mediumDate'}}</div>
-                </article>
-                </a>
+            <div class="col">
+                <div *ngIf="i + 2 < cities.length">
+                    <a [routerLink]="[cities[i + 2].name]">
+                        <article class="widget">
+                            <div class="weatherIcon"><img src="{{cities[i + 2].iconImg}}"></div>
+                            <div class="weatherInfo">
+                                <div class="temperature"><span>{{cities[i + 2] .main.tempC}}&#176;C</span></div>
+                                <div class="description">
+                                    <div class="weatherCondition">{{cities[i + 2] .weather[0].description}}</div>
+                                    <div class="place">{{cities[i + 2].name}}, {{cities[i + 2].sys.country}}</div>
+                                </div>
+                            </div>
+                            <div class="date text-center">{{cities[i + 2].date | date:'mediumDate'}}</div>
+                        </article>
+                    </a>
+                </div>
             </div>
-           
-          </div>
-          
         </div>
-      </div>
-
-
-
- 
+    </div>

@@ -1,40 +1,42 @@
 <h2 class="text-center">Weather in {{weather.name}}, {{weather.sys.country}}</h2>
 <div class="col-sm-12 text-center">
     <img src="{{weather.iconImg}}">
-<span class="temp">{{weather.main.tempC}}&#176;C</span>
-<p class="text-uppercase font-italic font-weight-bold" style="color: red;" >{{weather.weather[0].description}}</p>
+    <span class="temp">{{weather.main.tempC}}&#176;C</span>
+    <p class="text-uppercase font-italic font-weight-bold" style="color: red;">{{weather.weather[0].description}}</p>
 
 </div>
-<table class="table table-light table-striped table-bordered table-sm text-center" style="width: 70%; margin-left: 13%;">
-<tbody>
-    <tr>
-        <td>Humidity</td><td>{{weather.main.humidity}}%</td>
-    </tr>
-    <tr>
-        <td>Pressure</td><td>{{weather.main.pressure}} hPa</td>
-    </tr>
-    <tr>
-        <td>Sunrise</td><td>{{weather.sys.sunrise*1000 | date: 'H:mm'}}</td>
-    </tr>
-    <tr>
-        <td>Sunset</td><td>{{weather.sys.sunset*1000|date: 'H:mm'}}</td>
-    </tr>
-    <tr>
-        <td>Geo coords</td><td>[{{weather.coord.lat}},{{weather.coord.lon}}]</td>
-    </tr>
-    <tr>
-        
-        <td><a routerLink="/">Back</a></td>
-    </tr>
-</tbody>
+<table class="table table-light table-striped table-bordered table-sm text-center"
+    style="width: 70%; margin-left: 15%;">
+    <tbody>
+        <tr>
+            <td>Humidity</td>
+            <td>{{weather.main.humidity}}%</td>
+        </tr>
+        <tr>
+            <td>Pressure</td>
+            <td>{{weather.main.pressure}} hPa</td>
+        </tr>
+        <tr>
+            <td>Sunrise</td>
+            <td>{{weather.sys.sunrise*1000 | date: 'H:mm'}}</td>
+        </tr>
+        <tr>
+            <td>Sunset</td>
+            <td>{{weather.sys.sunset*1000|date: 'H:mm'}}</td>
+        </tr>
+        <tr>
+            <td>Geo coords</td>
+            <td>[{{weather.coord.lat}},{{weather.coord.lon}}]</td>
+        </tr>
+        <tr>
+
+            <td><a routerLink="/">Back</a></td>
+        </tr>
+    </tbody>
 </table>
 
 <br>
 <br>
-<google-map height="500px"
-width="100%"
-[zoom]="zoom"
-[center]="center"
-[options]="options" ></google-map>
+<google-map height="500px" width="100%" [zoom]="zoom" [center]="center" [options]="options"></google-map>
 <button (click)="zoomIn()">Zoom in</button>
 <button (click)="zoomOut()">Zoom out</button>
