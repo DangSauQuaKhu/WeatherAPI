@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Parser } from '@angular/compiler';
 @Component({
   selector: 'app-today',
   templateUrl: './today.component.html',
@@ -25,7 +26,14 @@ export class TodayComponent implements OnInit {
         this.weatherService.getWeatherDataByCoords(this.lat, this.lon).subscribe(
           data => {
             this.weather = data;
-            this.weather.date = new Date();
+            const utc_seconds = parseInt(this.weather.dt, 10) + parseInt(this.weather.timezone, 10);
+            let utc_milliseconds = utc_seconds * 1000;
+            let date =  new Date(utc_milliseconds);
+            let hour = date.getUTCHours();
+            if(hour>=12) utc_milliseconds = (utc_seconds-24*60*60) * 1000;
+            let local_date = new Date(utc_milliseconds).toUTCString();        
+            console.log(local_date);
+            this.weather.date = local_date;
             let tempC = ((parseFloat(this.weather.main.temp) - 32) / 1.8).toFixed(1);
             if (parseFloat(tempC) == parseInt(tempC)) this.weather.main.tempC = parseInt(tempC);
             else {
@@ -52,7 +60,14 @@ export class TodayComponent implements OnInit {
       next: data => {
         this.weather = data;
         console.log(this.weather);
-        this.weather.date = new Date();
+        const utc_seconds = parseInt(this.weather.dt, 10) + parseInt(this.weather.timezone, 10);
+        let utc_milliseconds = utc_seconds * 1000;
+        let date =  new Date(utc_milliseconds);
+        let hour = date.getUTCHours();
+        if(hour>=12) utc_milliseconds = (utc_seconds-24*60*60) * 1000;
+        let local_date = new Date(utc_milliseconds).toUTCString();        
+        console.log(local_date);
+        this.weather.date = local_date;
         let tempC = ((parseFloat(this.weather.main.temp) - 32) / 1.8).toFixed(1);
         if (parseFloat(tempC) == parseInt(tempC)) this.weather.main.tempC = parseInt(tempC);
         else {
