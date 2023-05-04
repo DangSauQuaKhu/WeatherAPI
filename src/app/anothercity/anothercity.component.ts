@@ -37,15 +37,16 @@ export class AnothercityComponent implements OnInit {
         }
         this.weather.iconImg = "https://openweathermap.org/img/wn/"+this.weather.weather[0].icon+"@2x.png";
         console.log(this.weather);
-        
+        this.center = {
+          lat: this.weather.coord.lat,
+          lng: this.weather.coord.lon,
+        };
+
           
       }
     )
-    this.center = {
-      lat: this.weather.coord.lat,
-      lng: this.weather.coord.lon,
-    };
-    console.log(this.center);
+   
+    console.log("center",this.center);
   }
   
   zoomIn() {
