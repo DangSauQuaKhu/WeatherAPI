@@ -30,7 +30,7 @@ export class TodayComponent implements OnInit {
             let utc_milliseconds = utc_seconds * 1000;
             let date =  new Date(utc_milliseconds);
             let hour = date.getUTCHours();
-            if(hour>=12) utc_milliseconds = (utc_seconds-24*60*60) * 1000;
+            // if(hour>=12) utc_milliseconds = (utc_seconds-24*60*60) * 1000;
             let local_date = new Date(utc_milliseconds).toUTCString();        
             console.log(local_date);
             this.weather.date = local_date;
@@ -64,7 +64,7 @@ export class TodayComponent implements OnInit {
         let utc_milliseconds = utc_seconds * 1000;
         let date =  new Date(utc_milliseconds);
         let hour = date.getUTCHours();
-        if(hour>=12) utc_milliseconds = (utc_seconds-24*60*60) * 1000;
+        // if(hour>=12) utc_milliseconds = (utc_seconds-24*60*60) * 1000;
         let local_date = new Date(utc_milliseconds).toUTCString();        
         console.log(local_date);
         this.weather.date = local_date;
