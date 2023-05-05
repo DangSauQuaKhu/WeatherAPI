@@ -107,4 +107,9 @@ export class TodayComponent implements OnInit {
   getIndex(name): number {
     return this.cities.findIndex(element => element.name === name);
   }
+  deleteCity(name)
+  {
+    let index =  this.cities.findIndex(element => element.name === name);
+    this.cities.splice(index,1);
+  }
 }
